@@ -154,7 +154,7 @@ resource "google_storage_bucket" "pipeline_files" {
   depends_on    = [google_project_service.all]
 }
 
-resource "google_storage_bucket" "pipeline_files" {
+resource "google_storage_bucket" "world_bank_pipeline_files" {
   project       = var.project_number
   name          = "world-bank-${var.project_id}-files"
   location      = "US"
