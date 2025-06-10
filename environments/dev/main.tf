@@ -92,6 +92,13 @@ resource "google_bigquery_dataset" "icnsa_dataset" {
   depends_on = [google_project_service.all]
 }
 
+resource "google_bigquery_dataset" "world_bank_dataset" {
+  project    = var.project_id
+  dataset_id = "world_bank_life_expectancy"
+  location   = "US"
+  depends_on = [google_project_service.all]
+}
+
 resource "google_bigquery_table" "icnsa_table" {
   project    = var.project_id
   dataset_id = google_bigquery_dataset.icnsa_dataset.dataset_id
