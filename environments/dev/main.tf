@@ -154,6 +154,14 @@ resource "google_storage_bucket" "pipeline_files" {
   depends_on    = [google_project_service.all]
 }
 
+resource "google_storage_bucket" "pipeline_files" {
+  project       = var.project_number
+  name          = "world-bank-${var.project_id}-files"
+  location      = "US"
+  force_destroy = true
+  depends_on    = [google_project_service.all]
+}
+
 resource "google_storage_bucket_object" "json_schema" {
   name       = "jsonSchema.json"
   source     = "${path.module}/files/ETLTaskjsonSchema.json"
