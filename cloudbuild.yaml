@@ -77,4 +77,4 @@ steps:
       fi
 # [END tf-apply]      
 options:
- logging: GCS_ONLY
+ logging: CLOUD_LOGGING_ONLY
