@@ -18,3 +18,16 @@ variable "zone" {
     default = "us-central1-a"
 }
 
+variable "build_roles_list" {
+  description = "The list of roles that Composer and Dataflow needs"
+  type        = list(string)
+  default = [
+    "roles/composer.worker",
+    "roles/dataflow.admin",
+    "roles/dataflow.worker",
+    "roles/bigquery.admin",
+    "roles/storage.objectAdmin",
+    "roles/dataflow.serviceAgent",
+    "roles/composer.ServiceAgentV2Ext"
+  ]
+}

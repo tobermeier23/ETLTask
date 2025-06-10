@@ -41,19 +41,19 @@ resource "google_project_iam_member" "composerAgent" {
   depends_on = [google_project_service.all]
 }
 
-# Create Composer environment
+# Create Core Composer environment
 resource "google_composer_environment" "example" {
   project   = var.project_id
-  name      = "example-environment"
+  name      = "etl-task"
   region    = var.region
   config {
 
     software_config {
-      image_version = "composer-2.0.12-airflow-2.2.3"
+      image_version = "composer-3-airflow-2.10.5"
       env_variables = {
         AIRFLOW_VAR_PROJECT_ID  = var.project_id
         AIRFLOW_VAR_GCE_ZONE    = var.zone
-        AIRFLOW_VAR_BUCKET_PATH = "gs://${var.basename}-${var.project_id}-files"
+        AIRFLOW_VAR_BUCKET_PATH = "gs://etl-task-${var.project_id}-files"
       }
     }
     node_config {
@@ -63,17 +63,39 @@ resource "google_composer_environment" "example" {
   depends_on = [google_project_service.all, google_service_account.etl, google_project_iam_member.allbuild, google_project_iam_member.composerAgent]
 }
 
-resource "google_bigquery_dataset" "weather_dataset" {
+# Create CI/CD Composer environment
+resource "google_composer_environment" "example" {
+  project   = var.project_id
+  name      = "world-bank"
+  region    = var.region
+  config {
+
+    software_config {
+      image_version = "composer-3-airflow-2.10.5"
+      env_variables = {
+        AIRFLOW_VAR_PROJECT_ID  = var.project_id
+        AIRFLOW_VAR_GCE_ZONE    = var.zone
+        AIRFLOW_VAR_BUCKET_PATH = "gs://world-bank-${var.project_id}-files"
+      }
+    }
+    node_config {
+      service_account = google_service_account.etl.name
+    }
+  }
+  depends_on = [google_project_service.all, google_service_account.etl, google_project_iam_member.allbuild, google_project_iam_member.composerAgent]
+}
+
+resource "google_bigquery_dataset" "icnsa_dataset" {
   project    = var.project_id
-  dataset_id = "average_weather"
+  dataset_id = "icnsa"
   location   = "US"
   depends_on = [google_project_service.all]
 }
 
-resource "google_bigquery_table" "weather_table" {
+resource "google_bigquery_table" "icnsa_table" {
   project    = var.project_id
-  dataset_id = google_bigquery_dataset.weather_dataset.dataset_id
-  table_id   = "average_weather"
+  dataset_id = google_bigquery_dataset.icnsa_dataset.dataset_id
+  table_id   = "icnsa"
   deletion_protection = false
 
   schema     = <<EOF
@@ -90,7 +112,30 @@ resource "google_bigquery_table" "weather_table" {
   }  
 ]
 EOF
-  depends_on = [google_bigquery_dataset.weather_dataset]
+  depends_on = [google_bigquery_dataset.icnsa_dataset]
+}
+
+resource "google_bigquery_table" "icnsa_bad_table" {
+  project    = var.project_id
+  dataset_id = google_bigquery_dataset.icnsa_dataset.dataset_id
+  table_id   = "bad_icnsa"
+  deletion_protection = false
+
+  schema     = <<EOF
+[
+  {
+    "name": "observation_date",
+    "type": "DATE",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "ICSA",
+    "type": "INTEGER",
+    "mode": "REQUIRED"
+  }  
+]
+EOF
+  depends_on = [google_bigquery_dataset.icnsa_dataset]
 }
 
 # Create Cloud Storage bucket and add files
@@ -104,25 +149,24 @@ resource "google_storage_bucket" "pipeline_files" {
 
 resource "google_storage_bucket_object" "json_schema" {
   name       = "jsonSchema.json"
-  source     = "${path.module}/files/jsonSchema.json"
+  source     = "${path.module}/files/ETLTaskjsonSchema.json"
+  bucket     = google_storage_bucket.pipeline_files.name
+  depends_on = [google_storage_bucket.pipeline_files]
+}
+
+resource "google_storage_bucket_object" "bad_json_schema" {
+  name       = "BadjsonSchema.json"
+  source     = "${path.module}/files/BadETLTaskjsonSchema.json"
   bucket     = google_storage_bucket.pipeline_files.name
   depends_on = [google_storage_bucket.pipeline_files]
 }
 
 resource "google_storage_bucket_object" "input_file" {
-  name       = "inputFile.txt"
-  source     = "${path.module}/files/inputFile.txt"
+  name       = "icnsa_data.csv"
+  source     = "${path.module}/files/ETLTaskinputFile.txt"
   bucket     = google_storage_bucket.pipeline_files.name
   depends_on = [google_storage_bucket.pipeline_files]
 }
-
-resource "google_storage_bucket_object" "transform_CSVtoJSON" {
-  name       = "transformCSVtoJSON.js"
-  source     = "${path.module}/files/transformCSVtoJSON.js"
-  bucket     = google_storage_bucket.pipeline_files.name
-  depends_on = [google_storage_bucket.pipeline_files]
-}
-
 
 data "google_composer_environment" "example" {
   project    = var.project_id
