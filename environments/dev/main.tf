@@ -171,8 +171,8 @@ resource "google_storage_bucket_object" "input_file" {
 data "google_composer_environment" "example" {
   project    = var.project_id
   region     = var.region
-  name       = google_composer_environment.example.name
-  depends_on = [google_composer_environment.example]
+  name       = google_composer_environment.fred.name
+  depends_on = [google_composer_environment.fred]
 }
 
 resource "google_storage_bucket_object" "dag_file" {
