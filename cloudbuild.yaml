@@ -8,6 +8,7 @@ steps:
       echo "***********************"
       echo "$BRANCH_NAME"
       echo "***********************"
+  logging: GCS_ONLY
 
 - id: 'tf init'
   name: 'hashicorp/terraform:1.0.0'
@@ -32,6 +33,7 @@ steps:
           cd ../../
         done
       fi 
+  logging: GCS_ONLY
 
 # [START tf-plan]
 - id: 'tf plan'
@@ -57,7 +59,9 @@ steps:
           cd ../../
         done
       fi 
+  logging: GCS_ONLY
 # [END tf-plan]
+
 
 # [START tf-apply]
 - id: 'tf apply'
@@ -74,4 +78,5 @@ steps:
         echo "Branch '$BRANCH_NAME' does not represent an official environment."
         echo "*******************************************************************************"
       fi
+  logging: GCS_ONLY
 # [END tf-apply]      
