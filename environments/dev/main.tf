@@ -141,7 +141,7 @@ EOF
 # Create Cloud Storage bucket and add files
 resource "google_storage_bucket" "pipeline_files" {
   project       = var.project_number
-  name          = "${var.basename}-${var.project_id}-files"
+  name          = "fred-${var.project_id}-files"
   location      = "US"
   force_destroy = true
   depends_on    = [google_project_service.all]
