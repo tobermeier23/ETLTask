@@ -42,9 +42,9 @@ resource "google_project_iam_member" "composerAgent" {
 }
 
 # Create Core Composer environment
-resource "google_composer_environment" "example" {
+resource "google_composer_environment" "fred" {
   project   = var.project_id
-  name      = "etl-task"
+  name      = "fred"
   region    = var.region
   config {
 
@@ -53,7 +53,7 @@ resource "google_composer_environment" "example" {
       env_variables = {
         AIRFLOW_VAR_PROJECT_ID  = var.project_id
         AIRFLOW_VAR_GCE_ZONE    = var.zone
-        AIRFLOW_VAR_BUCKET_PATH = "gs://etl-task-${var.project_id}-files"
+        AIRFLOW_VAR_BUCKET_PATH = "gs://fred-${var.project_id}-files"
       }
     }
     node_config {
@@ -64,7 +64,7 @@ resource "google_composer_environment" "example" {
 }
 
 # Create CI/CD Composer environment
-resource "google_composer_environment" "example" {
+resource "google_composer_environment" "world-bank" {
   project   = var.project_id
   name      = "world-bank"
   region    = var.region
