@@ -179,5 +179,5 @@ resource "google_storage_bucket_object" "dag_file" {
   name       = "dags/composer-dataflow-dag.py"
   source     = "${path.module}/files/composer-dataflow-dag.py"
   bucket     = replace(replace(data.google_composer_environment.example.config.0.dag_gcs_prefix, "gs://", ""),"/dags","")
-  depends_on = [google_composer_environment.example, google_storage_bucket.pipeline_files, google_bigquery_table.weather_table]
+  depends_on = [google_composer_environment.fred, google_storage_bucket.pipeline_files, google_bigquery_table.icnsa_table]
 }
