@@ -29,7 +29,7 @@ resource "google_cloud_run_v2_service" "default" {
     image_uri = "us-docker.pkg.dev/cloudrun/container/hello"
     base_image = "us-central1-docker.pkg.dev/serverless-runtimes/google-22-full/runtimes/python313"
     enable_automatic_updates = true
-    worker_pool = "worker-pool"
+    #worker_pool = "worker-pool"
     service_account = google_service_account.cloudbuild_service_account.id
   }
   depends_on = [
