@@ -50,7 +50,6 @@ resource "google_storage_bucket" "bucket" {
 
 resource "google_storage_bucket_object" "object" {
   name   = "fred-main.py"
-  project = var.project_id
   bucket = google_storage_bucket.bucket.name
   source = "${path.root}/files/fred-main.py"  # Add path to the zipped function source code
 }
