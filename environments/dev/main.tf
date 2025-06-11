@@ -38,8 +38,8 @@ resource "google_cloud_run_v2_service" "default" {
 #  ]
 }
 
-data "google_project" "project" {
-}
+#data "google_project" "project" {
+#}
 
 resource "google_storage_bucket" "bucket" {
   name     = "fred-run-source-location"  # Every bucket name must be globally unique
