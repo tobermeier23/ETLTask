@@ -70,3 +70,31 @@ resource "google_project_iam_member" "logs_writer" {
   role    = "roles/logging.logWriter"
   member  = "serviceAccount:${google_service_account.cloudbuild_service_account.email}"
 }
+
+variable "gcp_service_list" {
+  description = "The list of apis necessary for the project"
+  type        = list(string)
+  default = [
+    "dataflow.googleapis.com",
+    "compute.googleapis.com",
+    "composer.googleapis.com",
+    "storage.googleapis.com",
+    "bigquery.googleapis.com",
+    "iam.googleapis.com"
+  ]
+}
+
+resource "google_project_service" "all" {
+  for_each           = toset(var.gcp_service_list)
+  project            = var.project_number
+  service            = each.key
+  disable_on_destroy = false
+}
+
+resource "google_service_account" "etl" {
+  account_id   = "etlpipelinetask"
+  display_name = "ETL SA"
+  description  = "user-managed service account for Composer and Dataflow"
+  project = var.project_id
+  depends_on = [google_project_service.all]
+}
