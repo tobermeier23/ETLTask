@@ -32,10 +32,10 @@ resource "google_cloud_run_v2_service" "default" {
     worker_pool = "worker-pool"
     service_account = google_service_account.cloudbuild_service_account.id
   }
-#  depends_on = [
-#    google_project_iam_member.act_as,
-#    google_project_iam_member.logs_writer
-#  ]
+  depends_on = [
+    google_project_iam_member.act_as,
+    google_project_iam_member.logs_writer
+  ]
 }
 
 #data "google_project" "project" {
@@ -53,18 +53,18 @@ resource "google_storage_bucket_object" "object" {
   source = "${path.root}/files/fred-main.py"  # Add path to the zipped function source code
 }
 
-#resource "google_service_account" "cloudbuild_service_account" {
-#  account_id = "build-sa"
-#}
+resource "google_service_account" "cloudbuild_service_account" {
+  account_id = "build-sa"
+}
 
-#resource "google_project_iam_member" "act_as" {
-#  project = data.google_project.project.project_id
-#  role    = "roles/iam.serviceAccountUser"
-#  member  = "serviceAccount:${google_service_account.cloudbuild_service_account.email}"
-#}
+resource "google_project_iam_member" "act_as" {
+  project = data.google_project.project.project_id
+  role    = "roles/iam.serviceAccountUser"
+  member  = "serviceAccount:${google_service_account.cloudbuild_service_account.email}"
+}
 
-#resource "google_project_iam_member" "logs_writer" {
-#  project = data.google_project.project.project_id
-#  role    = "roles/logging.logWriter"
-#  member  = "serviceAccount:${google_service_account.cloudbuild_service_account.email}"
-#}
+resource "google_project_iam_member" "logs_writer" {
+  project = data.google_project.project.project_id
+  role    = "roles/logging.logWriter"
+  member  = "serviceAccount:${google_service_account.cloudbuild_service_account.email}"
+}
