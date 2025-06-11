@@ -164,21 +164,21 @@ resource "google_storage_bucket" "world_bank_pipeline_files" {
 
 resource "google_storage_bucket_object" "json_schema" {
   name       = "jsonSchema.json"
-  source     = "${path.root}/ETLTaskjsonSchema.json"
+  source     = "${path.root}/files/ETLTaskjsonSchema.json"
   bucket     = google_storage_bucket.pipeline_files.name
   depends_on = [google_storage_bucket.pipeline_files]
 }
 
 resource "google_storage_bucket_object" "bad_json_schema" {
   name       = "BadjsonSchema.json"
-  source     = "${path.root}/BadETLTaskjsonSchema.json"
+  source     = "${path.root}/files/BadETLTaskjsonSchema.json"
   bucket     = google_storage_bucket.pipeline_files.name
   depends_on = [google_storage_bucket.pipeline_files]
 }
 
 resource "google_storage_bucket_object" "input_file" {
   name       = "icnsa_data.csv"
-  source     = "${path.root}/ETLTaskinputFile.csv"
+  source     = "${path.root}/files/ETLTaskinputFile.csv"
   bucket     = google_storage_bucket.pipeline_files.name
   depends_on = [google_storage_bucket.pipeline_files]
 }
