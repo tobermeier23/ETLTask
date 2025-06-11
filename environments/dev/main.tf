@@ -154,23 +154,31 @@ resource "google_storage_bucket" "pipeline_files" {
   depends_on    = [google_project_service.all]
 }
 
+resource "google_storage_bucket" "world_bank_pipeline_files" {
+  project       = var.project_number
+  name          = "world-bank-${var.project_id}-files"
+  location      = "US"
+  force_destroy = true
+  depends_on    = [google_project_service.all]
+}
+
 resource "google_storage_bucket_object" "json_schema" {
   name       = "jsonSchema.json"
-  source     = "${path.module}/files/ETLTaskjsonSchema.json"
+  source     = "files/ETLTaskjsonSchema.json"
   bucket     = google_storage_bucket.pipeline_files.name
   depends_on = [google_storage_bucket.pipeline_files]
 }
 
 resource "google_storage_bucket_object" "bad_json_schema" {
   name       = "BadjsonSchema.json"
-  source     = "${path.module}/files/BadETLTaskjsonSchema.json"
+  source     = "files/BadETLTaskjsonSchema.json"
   bucket     = google_storage_bucket.pipeline_files.name
   depends_on = [google_storage_bucket.pipeline_files]
 }
 
 resource "google_storage_bucket_object" "input_file" {
   name       = "icnsa_data.csv"
-  source     = "${path.module}/files/ETLTaskinputFile.txt"
+  source     = "files/ETLTaskinputFile.csv"
   bucket     = google_storage_bucket.pipeline_files.name
   depends_on = [google_storage_bucket.pipeline_files]
 }
