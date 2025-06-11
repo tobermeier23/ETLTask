@@ -53,9 +53,9 @@ resource "google_storage_bucket_object" "object" {
   source = "${path.root}/files/fred-main.py"  # Add path to the zipped function source code
 }
 
-resource "google_service_account" "cloudbuild_service_account" {
-  account_id = "build-sa"
-}
+#resource "google_service_account" "cloudbuild_service_account" {
+#  account_id = "build-sa"
+#}
 
 #resource "google_project_iam_member" "act_as" {
 #  project = data.google_project.project.project_id
