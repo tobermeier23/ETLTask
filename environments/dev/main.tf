@@ -24,7 +24,8 @@ resource "google_cloud_run_v2_service" "default" {
     }
   }
   build_config {
-    source_location = "gs://${google_storage_bucket.bucket.name}/${google_storage_bucket_object.object.name}"
+    #source_location = "gs://${google_storage_bucket.bucket.name}/${google_storage_bucket_object.object.name}"
+    source_location = "gs://fred-run-source-location/fred-main.py"
     function_target = "hello_http"
     image_uri = "us-docker.pkg.dev/cloudrun/container/hello"
     base_image = "us-central1-docker.pkg.dev/serverless-runtimes/google-22-full/runtimes/python313"
@@ -52,6 +53,14 @@ resource "google_storage_bucket_object" "object" {
   name   = "fred-main.py"
   bucket = google_storage_bucket.bucket.name
   source = "${path.root}/files/fred-main.py"  # Add path to the zipped function source code
+}
+
+resource "google_storage_bucket" "pipeline_files" {
+  project       = var.project_number
+  name          = "fred-${var.project_id}-files"
+  location      = "US"
+  force_destroy = true
+  depends_on    = [google_project_service.all]
 }
 
 resource "google_service_account" "cloudbuild_service_account" {
