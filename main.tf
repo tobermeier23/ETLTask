@@ -43,28 +43,31 @@ resource "google_cloud_run_v2_service" "default" {
 
 resource "google_storage_bucket" "bucket" {
   name     = "fred-run-source-location"  # Every bucket name must be globally unique
+  project = var.project_id
   location = "US"
   uniform_bucket_level_access = true
 }
 
 resource "google_storage_bucket_object" "object" {
   name   = "fred-main.py"
+  project = var.project_id
   bucket = google_storage_bucket.bucket.name
   source = "${path.root}/files/fred-main.py"  # Add path to the zipped function source code
 }
 
 resource "google_service_account" "cloudbuild_service_account" {
   account_id = "build-sa"
+  project = var.project_id
 }
 
 resource "google_project_iam_member" "act_as" {
-  project = project = var.project_id
+  project = var.project_id
   role    = "roles/iam.serviceAccountUser"
   member  = "serviceAccount:${google_service_account.cloudbuild_service_account.email}"
 }
 
 resource "google_project_iam_member" "logs_writer" {
-  project = project = var.project_id
+  project = var.project_id
   role    = "roles/logging.logWriter"
   member  = "serviceAccount:${google_service_account.cloudbuild_service_account.email}"
 }
