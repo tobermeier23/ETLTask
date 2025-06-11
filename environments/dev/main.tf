@@ -19,7 +19,7 @@ resource "google_project_service" "all" {
 }
 
 resource "google_service_account" "etl" {
-  account_id   = "etlpipeline"
+  account_id   = "etlpipelinetask"
   display_name = "ETL SA"
   description  = "user-managed service account for Composer and Dataflow"
   project = var.project_id
