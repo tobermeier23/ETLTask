@@ -25,7 +25,7 @@ resource "google_cloud_run_v2_service" "default" {
   }
   build_config {
     #source_location = "gs://${google_storage_bucket.bucket.name}/${google_storage_bucket_object.object.name}"
-    source_location = "gs://fred-run-source-location/fred-main.py"
+    source_location = "gs://fred-run-source-location/fred-main.zip"
     function_target = "hello_http"
     image_uri = "us-docker.pkg.dev/cloudrun/container/hello"
     base_image = "us-central1-docker.pkg.dev/serverless-runtimes/google-22-full/runtimes/python313"
