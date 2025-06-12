@@ -7,7 +7,7 @@ resource "google_cloud_run_v2_service" "default" {
 
   template {
     containers {
-      image = "us-docker.pkg.dev/cloudrun/container/hello"
+      image = "us-central1-docker.pkg.dev/ninth-sol-462415-k7/cloud-run-source-deploy/fred-download"
       base_image_uri = "us-central1-docker.pkg.dev/serverless-runtimes/google-22-full/runtimes/python313"
       volume_mounts {
         name = "gcs-1"
