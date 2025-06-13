@@ -219,7 +219,7 @@ resource "google_storage_folder" "fred_tmp_folder" {
 resource "google_data_pipeline_pipeline" "primary" {
   name         = "fred-ingest"
   display_name = "fred-ingest"
-  project_id = var.project_number
+  project      = var.project_id
   type         = "PIPELINE_TYPE_BATCH"
   state        = "STATE_ACTIVE"
   region       = "us-central1"
