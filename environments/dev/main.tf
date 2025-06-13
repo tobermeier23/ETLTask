@@ -248,6 +248,6 @@ resource "google_data_pipeline_pipeline" "primary" {
   }
   schedule_info {
     schedule  = "0 * * * *"
-    time_zone = "UTC-5"
+    time_zone = "America/Chicago"
   }
 }
