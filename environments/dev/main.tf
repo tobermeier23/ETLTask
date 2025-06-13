@@ -241,6 +241,9 @@ resource "google_data_pipeline_pipeline" "primary" {
           "containsHeaders" : "true"
           "csvFileEncoding" : "UTF-8"
         }
+        environment {
+          temp_location = "gs://fred-dataflow-files/tmp"
+        }
         update                 = false
       }
       location = "us-central1"
