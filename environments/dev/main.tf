@@ -1,6 +1,6 @@
 resource "google_cloud_run_v2_service" "default" {
   project = var.project_id
-  name     = "fred-service"
+  name     = "fred-service-new"
   location = "us-central1"
   deletion_protection = false
   ingress = "INGRESS_TRAFFIC_ALL"
