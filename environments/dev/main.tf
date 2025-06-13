@@ -107,3 +107,28 @@ resource "google_service_account" "etl" {
   project = var.project_id
   depends_on = [google_project_service.all]
 }
+
+resource "google_eventarc_trigger" "fred-trigger" {
+  name     = "fred-trigger"
+  project            = var.project_number
+  location = "us-central1"
+  matching_criteria {
+    attribute = "type"
+    value     = "google.cloud.audit.log.v1.written"
+  }
+  matching_criteria {
+    attribute = "serviceName"
+    value     = "cloudbuild.googleapis.com"
+  }
+  matching_criteria {
+    attribute = "methodName"
+    value     = "google.devtools.cloudbuild.v1.CloudBuild.CreateBuild"
+  }
+  service_account = "etlpipeline@ninth-sol-462415-k7.iam.gserviceaccount.com"
+  destination {
+    cloud_run_service {
+      service = google_cloud_run_v2_service.default.name
+      region  = "us-central1"
+    }
+  }
+}
