@@ -113,7 +113,7 @@ resource "google_eventarc_trigger" "fred-trigger" {
   project            = var.project_number
   location = "us-central1"
   matching_criteria {
-    attribute = "type"
+    attribute = "source"
     value     = "google.devtools.cloudbuild.v1.CloudBuild.CreateBuild"
   }
   destination {
