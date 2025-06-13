@@ -133,3 +133,55 @@ resource "google_eventarc_trigger" "fred-trigger" {
     }
   }
 }
+
+resource "google_bigquery_dataset" "fred_dataset" {
+  project    = var.project_id
+  dataset_id = "fred-icnsa"
+  location   = "US"
+}
+
+resource "google_bigquery_table" "fred_table" {
+  project    = var.project_id
+  dataset_id = google_bigquery_dataset.fred_dataset.dataset_id
+  table_id   = "fred-icnsa"
+  deletion_protection = false
+
+  schema     = <<EOF
+[
+  {
+    "name": "observation_date",
+    "type": "DATE",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "ICNSA",
+    "type": "INTEGER",
+    "mode": "REQUIRED"
+  }  
+]
+EOF
+  depends_on = [google_bigquery_dataset.fred_dataset]
+}
+
+resource "google_bigquery_table" "fred_bad_table" {
+  project    = var.project_id
+  dataset_id = google_bigquery_dataset.fred_dataset.dataset_id
+  table_id   = "fred-bad-icnsa"
+  deletion_protection = false
+
+  schema     = <<EOF
+[
+  {
+    "name": "observation_date",
+    "type": "DATE",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "ICNSA",
+    "type": "INTEGER",
+    "mode": "REQUIRED"
+  }  
+]
+EOF
+  depends_on = [google_bigquery_dataset.fred_dataset]
+}
