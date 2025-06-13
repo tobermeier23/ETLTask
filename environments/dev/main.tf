@@ -185,3 +185,31 @@ resource "google_bigquery_table" "fred_bad_table" {
 EOF
   depends_on = [google_bigquery_dataset.fred_dataset]
 }
+
+# Create Cloud Storage bucket and add files
+resource "google_storage_bucket" "fred_dataflow_files" {
+  project       = var.project_number
+  name          = "fred-dataflow-files"
+  location      = "US"
+  force_destroy = true
+  depends_on    = [google_project_service.all]
+}
+
+resource "google_storage_bucket_object" "json_schema" {
+  name       = "jsonSchema.json"
+  source     = "${path.root}/files/fredJsonSchema.json"
+  bucket     = google_storage_bucket.fred_dataflow_files.name
+  depends_on = [google_storage_bucket.fred_dataflow_files]
+}
+
+resource "google_storage_bucket_object" "bad_json_schema" {
+  name       = "BadjsonSchema.json"
+  source     = "${path.root}/files/fredBadJsonSchema.json"
+  bucket     = google_storage_bucket.fred_dataflow_files.name
+  depends_on = [google_storage_bucket.fred_dataflow_files]
+}
+
+resource "google_storage_folder" "fred_tmp_folder" {
+  bucket        = google_storage_bucket.fred_dataflow.name
+  name          = "tmp/"
+}
