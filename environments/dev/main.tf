@@ -129,6 +129,7 @@ resource "google_eventarc_trigger" "fred-trigger" {
     cloud_run_service {
       service = google_cloud_run_v2_service.default.name
       region  = "us-central1"
+      path    = "/"
     }
   }
 }
