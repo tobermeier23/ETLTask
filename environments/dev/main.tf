@@ -243,6 +243,11 @@ resource "google_data_pipeline_pipeline" "primary" {
         }
         environment {
           temp_location = "gs://fred-dataflow-files/tmp"
+          num_workers = 5
+          max_workers = 5
+          machine_type = "E2"
+          worker_region = "us-east5"
+          worker_zone = "us-east-c"
         }
         update                 = false
       }
