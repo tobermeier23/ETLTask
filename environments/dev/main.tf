@@ -124,6 +124,7 @@ resource "google_eventarc_trigger" "fred-trigger" {
     attribute = "methodName"
     value     = "google.devtools.cloudbuild.v1.CloudBuild.CreateBuild"
   }
+  service_account = "etlpipeline@ninth-sol-462415-k7.iam.gserviceaccount.com"
   destination {
     cloud_run_service {
       service = google_cloud_run_v2_service.default.name
