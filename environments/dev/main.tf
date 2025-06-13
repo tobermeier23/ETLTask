@@ -192,6 +192,10 @@ resource "google_storage_bucket" "fred_dataflow_files" {
   name          = "fred-dataflow-files"
   location      = "US"
   force_destroy = true
+  uniform_bucket_level_access = true
+  hierarchical_namespace {
+    enabled = true
+  }
   depends_on    = [google_project_service.all]
 }
 
