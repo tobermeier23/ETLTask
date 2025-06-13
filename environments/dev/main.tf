@@ -1,6 +1,6 @@
 resource "google_cloud_run_v2_service" "default" {
   project = var.project_id
-  name     = "fred-service"
+  name     = "fred-service-new"
   location = "us-central1"
   deletion_protection = false
   ingress = "INGRESS_TRAFFIC_ALL"
@@ -27,7 +27,7 @@ resource "google_cloud_run_v2_service" "default" {
     #source_location = "gs://${google_storage_bucket.bucket.name}/${google_storage_bucket_object.object.name}"
     source_location = "gs://fred-run-source-location/fred-main.zip"
     function_target = "hello_http"
-    image_uri = "us-docker.pkg.dev/cloudrun/container/hello"
+    image_uri = "us-central1-docker.pkg.dev/ninth-sol-462415-k7/cloud-run-source-deploy/fred-download"
     base_image = "us-central1-docker.pkg.dev/serverless-runtimes/google-22-full/runtimes/python313"
     enable_automatic_updates = true
     #worker_pool = "worker-pool"
