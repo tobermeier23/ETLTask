@@ -110,6 +110,7 @@ resource "google_service_account" "etl" {
 
 resource "google_eventarc_trigger" "fred-trigger" {
   name     = "fred-trigger"
+  project            = var.project_number
   location = "us-central1"
   matching_criteria {
     attribute = "type"
