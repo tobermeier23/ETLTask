@@ -232,10 +232,10 @@ resource "google_data_pipeline_pipeline" "primary" {
         job_name = "fred-ingest"
         parameters = {
           "inputFilePattern" : "gs://fred-ninth-sol-462415-k7-files/fred_input.csv"
-          "schemaJSONPath" : "gs://etl-task-files/jsonSchema.json"
+          "schemaJSONPath" : "gs://fred-dataflow-files/jsonSchema.json"
           "outputTable" : "ninth-sol-462415-k7.fred_icnsa.fred_icnsa"
           "badRecordsOutputTable" : "ninth-sol-462415-k7.fred_icnsa.fred_bad_icnsa"
-          "csvFormat" : "default"
+          "csvFormat" : "Default"
           "delimiter" : ","
           "bigQueryLoadingTemporaryDirectory" : "gs://fred-dataflow-files/tmp"
           "containsHeaders" : "true"
@@ -245,7 +245,7 @@ resource "google_data_pipeline_pipeline" "primary" {
           temp_location = "gs://fred-dataflow-files/tmp"
           num_workers = 5
           max_workers = 5
-          machine_type = "E2"
+          machine_type = "n1-standard-1"
           worker_region = "us-east5"
           worker_zone = "us-east-c"
         }
