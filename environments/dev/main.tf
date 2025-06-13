@@ -24,13 +24,11 @@ resource "google_cloud_run_v2_service" "default" {
     }
   }
   build_config {
-    #source_location = "gs://${google_storage_bucket.bucket.name}/${google_storage_bucket_object.object.name}"
     source_location = "gs://fred-run-source-location/fred-main.zip"
     function_target = "hello_http"
     image_uri = "us-central1-docker.pkg.dev/ninth-sol-462415-k7/cloud-run-source-deploy/fred-download"
     base_image = "us-central1-docker.pkg.dev/serverless-runtimes/google-22-full/runtimes/python313"
     enable_automatic_updates = true
-    #worker_pool = "worker-pool"
     service_account = google_service_account.cloudbuild_service_account.id
   }
   depends_on = [
@@ -216,4 +214,38 @@ resource "google_storage_bucket_object" "bad_json_schema" {
 resource "google_storage_folder" "fred_tmp_folder" {
   bucket        = google_storage_bucket.fred_dataflow_files.name
   name          = "tmp/"
+}
+
+resource "google_data_pipeline_pipeline" "primary" {
+  name         = "fred-ingest"
+  display_name = "fred-ingest"
+  type         = "PIPELINE_TYPE_BATCH"
+  state        = "STATE_ACTIVE"
+  region       = "us-central1"
+
+  workload {
+    dataflow_launch_template_request {
+      project_id = var.project_number
+      gcs_path   = "gs://dataflow-templates-us-central1/latest/GCS_CSV_to_BigQuery"
+      launch_parameters {
+        job_name = "fred-ingest"
+        parameters = {
+          "inputFilePattern" : "gs://fred-ninth-sol-462415-k7-files/fred_input.csv"
+          "schemaJSONPath" : "gs://etl-task-files/ETLTaskjsonSchema.json"
+          "outputTable" : "ninth-sol-462415-k7.fred_icnsa.fred_icnsa"
+          "badRecordsOutputTable" : "ninth-sol-462415-k7.fred_icnsa.fred_bad_icnsa"
+          "csvFormat" : "default"
+          "delimiter" : ","
+          "bigQueryLoadingTemporaryDirectory" : "gs://fred-dataflow-files/tmp"
+          "containsHeaders" : "true"
+          "csvFileEncoding" : "UTF-8"
+        }
+        update                 = false
+      }
+      location = "us-central1"
+    }
+  }
+  schedule_info {
+    schedule = "0 10 * * 2"
+  }
 }
