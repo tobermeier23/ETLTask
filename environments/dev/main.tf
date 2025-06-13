@@ -152,7 +152,7 @@ resource "google_bigquery_table" "fred_table" {
     "mode": "REQUIRED"
   },
   {
-    "name": "ICNSA",
+    "name": "ICSA",
     "type": "INTEGER",
     "mode": "REQUIRED"
   }  
@@ -175,7 +175,7 @@ resource "google_bigquery_table" "fred_bad_table" {
     "mode": "REQUIRED"
   },
   {
-    "name": "ICNSA",
+    "name": "ICSA",
     "type": "INTEGER",
     "mode": "REQUIRED"
   }  
