@@ -210,6 +210,6 @@ resource "google_storage_bucket_object" "bad_json_schema" {
 }
 
 resource "google_storage_folder" "fred_tmp_folder" {
-  bucket        = google_storage_bucket.fred_dataflow.name
+  bucket        = google_storage_bucket.fred_dataflow_files.name
   name          = "tmp/"
 }
