@@ -232,7 +232,7 @@ resource "google_data_pipeline_pipeline" "primary" {
         job_name = "fred-ingest"
         parameters = {
           "inputFilePattern" : "gs://fred-ninth-sol-462415-k7-files/fred_input.csv"
-          "schemaJSONPath" : "gs://etl-task-files/ETLTaskjsonSchema.json"
+          "schemaJSONPath" : "gs://etl-task-files/jsonSchema.json"
           "outputTable" : "ninth-sol-462415-k7.fred_icnsa.fred_icnsa"
           "badRecordsOutputTable" : "ninth-sol-462415-k7.fred_icnsa.fred_bad_icnsa"
           "csvFormat" : "default"
