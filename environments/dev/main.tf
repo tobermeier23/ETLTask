@@ -136,14 +136,14 @@ resource "google_eventarc_trigger" "fred-trigger" {
 
 resource "google_bigquery_dataset" "fred_dataset" {
   project    = var.project_id
-  dataset_id = "fred-icnsa"
+  dataset_id = "fred_icnsa"
   location   = "US"
 }
 
 resource "google_bigquery_table" "fred_table" {
   project    = var.project_id
   dataset_id = google_bigquery_dataset.fred_dataset.dataset_id
-  table_id   = "fred-icnsa"
+  table_id   = "fred_icnsa"
   deletion_protection = false
 
   schema     = <<EOF
@@ -166,7 +166,7 @@ EOF
 resource "google_bigquery_table" "fred_bad_table" {
   project    = var.project_id
   dataset_id = google_bigquery_dataset.fred_dataset.dataset_id
-  table_id   = "fred-bad-icnsa"
+  table_id   = "fred_bad_icnsa"
   deletion_protection = false
 
   schema     = <<EOF
