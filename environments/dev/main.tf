@@ -240,6 +240,7 @@ resource "google_data_pipeline_pipeline" "primary" {
           temp_location = "gs://fred-dataflow-files/tmp"
           num_workers = 5
           max_workers = 5
+          service_account_email = "etlpipeline@ninth-sol-462415-k7.iam.gserviceaccount.com"
           machine_type = "n1-standard-1"
           worker_region = "us-east5"
           worker_zone = "us-east5-c"
@@ -718,6 +719,7 @@ resource "google_data_pipeline_pipeline" "wb_dataflow_pipeline" {
           temp_location = "gs://wb-dataflow-files/tmp"
           num_workers = 5
           max_workers = 5
+          service_account_email = "etlpipeline@ninth-sol-462415-k7.iam.gserviceaccount.com"
           machine_type = "n1-standard-1"
           worker_region = "us-east5"
           worker_zone = "us-east5-c"
