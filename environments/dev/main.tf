@@ -357,279 +357,279 @@ resource "google_bigquery_table" "wb_table" {
 [
   {
     "name": "Country Name",
-    "type": "STRING",
+    "type": "STRING"
   },
   {
     "name": "Country Code",
-    "type": "STRING",
+    "type": "STRING"
   },
   {
     "name": "Inticator Name",
-    "type": "STRING",
+    "type": "STRING"
   },
   {
     "name": "Indicator Code",
-    "type": "STRING",
+    "type": "STRING"
   },
   {
     "name": "1960",
-    "type": "INTEGER",
+    "type": "INTEGER"
   },
   {
     "name": "1961",
-    "type": "INTEGER",
+    "type": "INTEGER"
   },
   {
     "name": "1962",
-    "type": "INTEGER",
+    "type": "INTEGER"
   },
   {
     "name": "1963",
-    "type": "INTEGER",
+    "type": "INTEGER"
   },
   {
     "name": "1964",
-    "type": "INTEGER",
+    "type": "INTEGER"
   },
   {
     "name": "1965",
-    "type": "INTEGER",
+    "type": "INTEGER"
   },
   {
     "name": "1966",
-    "type": "INTEGER",
+    "type": "INTEGER"
   },
   {
     "name": "1967",
-    "type": "INTEGER",
+    "type": "INTEGER"
   },
   {
     "name": "1968",
-    "type": "INTEGER",
+    "type": "INTEGER"
   },
   {
     "name": "1969",
-    "type": "INTEGER",
+    "type": "INTEGER"
   },
   {
     "name": "1970",
-    "type": "INTEGER",
+    "type": "INTEGER"
   },
   {
     "name": "1971",
-    "type": "INTEGER",
+    "type": "INTEGER"
   },
   {
     "name": "1972",
-    "type": "INTEGER",
+    "type": "INTEGER"
   },
   {
     "name": "1973",
-    "type": "INTEGER",
+    "type": "INTEGER"
   },
   {
     "name": "1974",
-    "type": "INTEGER",
+    "type": "INTEGER"
   },
   {
     "name": "1975",
-    "type": "INTEGER",
+    "type": "INTEGER"
   },
   {
     "name": "1976",
-    "type": "INTEGER",
+    "type": "INTEGER"
   },
   {
     "name": "1977",
-    "type": "INTEGER",
+    "type": "INTEGER"
   },
   {
     "name": "1978",
-    "type": "INTEGER",
+    "type": "INTEGER"
   },
   {
     "name": "1979",
-    "type": "INTEGER",
+    "type": "INTEGER"
   },
   {
     "name": "1980",
-    "type": "INTEGER",
+    "type": "INTEGER"
   },
   {
     "name": "1981",
-    "type": "INTEGER",
+    "type": "INTEGER"
   },
   {
     "name": "1982",
-    "type": "INTEGER",
+    "type": "INTEGER"
   },
   {
     "name": "1983",
-    "type": "INTEGER",
+    "type": "INTEGER"
   },
   {
     "name": "1984",
-    "type": "INTEGER",
+    "type": "INTEGER"
   },
   {
     "name": "1985",
-    "type": "INTEGER",
+    "type": "INTEGER"
   },
   {
     "name": "1986",
-    "type": "INTEGER",
+    "type": "INTEGER"
   },
   {
     "name": "1987",
-    "type": "INTEGER",
+    "type": "INTEGER"
   },
   {
     "name": "1988",
-    "type": "INTEGER",
+    "type": "INTEGER"
   },
   {
     "name": "1989",
-    "type": "INTEGER",
+    "type": "INTEGER"
   },
   {
     "name": "1990",
-    "type": "INTEGER",
+    "type": "INTEGER"
   },
   {
     "name": "1991",
-    "type": "INTEGER",
+    "type": "INTEGER"
   },
   {
     "name": "1992",
-    "type": "INTEGER",
+    "type": "INTEGER"
   },
   {
     "name": "1993",
-    "type": "INTEGER",
+    "type": "INTEGER"
   },
   {
     "name": "1994",
-    "type": "INTEGER",
+    "type": "INTEGER"
   },
   {
     "name": "1995",
-    "type": "INTEGER",
+    "type": "INTEGER"
   },
   {
     "name": "1996",
-    "type": "INTEGER",
+    "type": "INTEGER"
   },
   {
     "name": "1997",
-    "type": "INTEGER",
+    "type": "INTEGER"
   },
   {
     "name": "1998",
-    "type": "INTEGER",
+    "type": "INTEGER"
   },
   {
     "name": "1999",
-    "type": "INTEGER",
+    "type": "INTEGER"
   },
   {
     "name": "2000",
-    "type": "INTEGER",
+    "type": "INTEGER"
   },
   {
     "name": "2001",
-    "type": "INTEGER",
+    "type": "INTEGER"
   },
   {
     "name": "2002",
-    "type": "INTEGER",
+    "type": "INTEGER"
   },
   {
     "name": "2003",
-    "type": "INTEGER",
+    "type": "INTEGER"
   },
   {
     "name": "2004",
-    "type": "INTEGER",
+    "type": "INTEGER"
   },
   {
     "name": "2005",
-    "type": "INTEGER",
+    "type": "INTEGER"
   },
   {
     "name": "2006",
-    "type": "INTEGER",
+    "type": "INTEGER"
   },
   {
     "name": "2007",
-    "type": "INTEGER",
+    "type": "INTEGER"
   },
   {
     "name": "2008",
-    "type": "INTEGER",
+    "type": "INTEGER"
   },
   {
     "name": "2009",
-    "type": "INTEGER",
+    "type": "INTEGER"
   },
   {
     "name": "2010",
-    "type": "INTEGER",
+    "type": "INTEGER"
   },
   {
     "name": "2011",
-    "type": "INTEGER",
+    "type": "INTEGER"
   },
   {
     "name": "2012",
-    "type": "INTEGER",
+    "type": "INTEGER"
   },
   {
     "name": "2013",
-    "type": "INTEGER",
+    "type": "INTEGER"
   },
   {
     "name": "2014",
-    "type": "INTEGER",
+    "type": "INTEGER"
   },
   {
     "name": "2015",
-    "type": "INTEGER",
+    "type": "INTEGER"
   },
   {
     "name": "2016",
-    "type": "INTEGER",
+    "type": "INTEGER"
   },
   {
     "name": "2017",
-    "type": "INTEGER",
+    "type": "INTEGER"
   },
   {
     "name": "2018",
-    "type": "INTEGER",
+    "type": "INTEGER"
   },
   {
     "name": "2019",
-    "type": "INTEGER",
+    "type": "INTEGER"
   },
   {
     "name": "2020",
-    "type": "INTEGER",
+    "type": "INTEGER"
   },
   {
     "name": "2021",
-    "type": "INTEGER",
+    "type": "INTEGER"
   },
   {
     "name": "2022",
-    "type": "INTEGER",
+    "type": "INTEGER"
   },
   {
     "name": "2023",
-    "type": "INTEGER",
+    "type": "INTEGER"
   },
   {
     "name": "2024",
-    "type": "INTEGER",
+    "type": "INTEGER"
   }
 ]
 EOF
