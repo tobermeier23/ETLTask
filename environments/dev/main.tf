@@ -286,7 +286,7 @@ resource "google_cloud_run_v2_service" "wb_run_service" {
 
   template {
     containers {
-      image = "us-central1-docker.pkg.dev/ninth-sol-462415-k7/cloud-run-source-deploy/fred-download"
+      image = "us-central1-docker.pkg.dev/ninth-sol-462415-k7/cloud-run-source-deploy/wb-service"
       base_image_uri = "us-central1-docker.pkg.dev/serverless-runtimes/google-22-full/runtimes/python313"
       volume_mounts {
         name = "gcs-1"
@@ -305,7 +305,7 @@ resource "google_cloud_run_v2_service" "wb_run_service" {
   build_config {
     source_location = "gs://wb-run-source-location/wb-main.zip"
     function_target = "hello_http"
-    image_uri = "us-central1-docker.pkg.dev/ninth-sol-462415-k7/cloud-run-source-deploy/fred-download"
+    image_uri = "us-central1-docker.pkg.dev/ninth-sol-462415-k7/cloud-run-source-deploy/wb-service"
     base_image = "us-central1-docker.pkg.dev/serverless-runtimes/google-22-full/runtimes/python313"
     enable_automatic_updates = true
     service_account = google_service_account.cloudbuild_service_account.id
