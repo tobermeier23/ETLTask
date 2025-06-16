@@ -714,7 +714,7 @@ resource "google_data_pipeline_pipeline" "wb_dataflow_pipeline" {
         job_name = "wb-ingest"
         parameters = {
           "inputFilePattern" : "gs://wb-ninth-sol-462415-k7-files/API_SP.DYN.LE00.IN_DS2_en_csv_v2_2579.csv"
-          "schemaJSONPath" : "gs://wb-dataflow-files/wbjsonSchema.json"
+          "schemaJSONPath" : "gs://wb-dataflow-files/wbJsonSchema.json"
           "outputTable" : "ninth-sol-462415-k7.wb_data.wb_data"
           "badRecordsOutputTable" : "ninth-sol-462415-k7.wb_data.wb_bad_data"
           "csvFormat" : "Default"
