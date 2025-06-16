@@ -175,7 +175,7 @@ resource "google_bigquery_table" "fred_bad_table" {
   {
       "name": "ErrorMsg",
       "type": "STRING"
-    }  
+  }  
 ]
 EOF
   depends_on = [google_bigquery_dataset.fred_dataset]
