@@ -255,6 +255,27 @@ resource "google_data_pipeline_pipeline" "primary" {
   }
 }
 
+resource "google_storage_bucket" "wb_bucket" {
+  name     = "wb-run-source-location"  # Every bucket name must be globally unique
+  project = var.project_id
+  location = "US"
+  uniform_bucket_level_access = true
+}
+
+resource "google_storage_bucket_object" "wb_run_files" {
+  name   = "wb-main.zip"
+  bucket = google_storage_bucket.wb_bucket.name
+  source = "${path.root}/files/wb-main.zip"  # Add path to the zipped function source code
+}
+
+resource "google_storage_bucket" "wb_pipeline_files" {
+  project       = var.project_number
+  name          = "wb-${var.project_id}-files"
+  location      = "US"
+  force_destroy = true
+  depends_on    = [google_project_service.all]
+}
+
 resource "google_cloud_run_v2_service" "wb_run_service" {
   project = var.project_id
   name     = "wb-service"
@@ -292,27 +313,6 @@ resource "google_cloud_run_v2_service" "wb_run_service" {
     google_project_iam_member.act_as,
     google_project_iam_member.logs_writer
   ]
-}
-
-resource "google_storage_bucket" "wb_bucket" {
-  name     = "wb-run-source-location"  # Every bucket name must be globally unique
-  project = var.project_id
-  location = "US"
-  uniform_bucket_level_access = true
-}
-
-resource "google_storage_bucket_object" "wb_run_files" {
-  name   = "wb-main.zip"
-  bucket = google_storage_bucket.bucket.name
-  source = "${path.root}/files/wb-main.zip"  # Add path to the zipped function source code
-}
-
-resource "google_storage_bucket" "wb_pipeline_files" {
-  project       = var.project_number
-  name          = "wb-${var.project_id}-files"
-  location      = "US"
-  force_destroy = true
-  depends_on    = [google_project_service.all]
 }
 
 resource "google_eventarc_trigger" "wb-trigger" {
