@@ -6,7 +6,7 @@
         "mode": "REQUIRED"
     },
     {
-        "name": "ICNSA",
+        "name": "ICSA",
         "type": "INTEGER",
         "mode": "REQUIRED"
     }]
