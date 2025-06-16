@@ -1,6 +1,14 @@
 {
     "BigQuery Schema": [
   {
+    "name": "Data Source",
+    "type": "STRING"
+  },
+  {
+    "name": "World Development Indicators",
+    "type": "STRING"
+  },
+  {
     "name": "Country Name",
     "type": "STRING"
   },
