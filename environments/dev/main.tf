@@ -639,7 +639,7 @@ EOF
 
 resource "google_bigquery_table" "wb_bad_table" {
   project    = var.project_id
-  dataset_id = google_bigquery_dataset.fred_dataset.dataset_id
+  dataset_id = google_bigquery_dataset.wb_dataset.dataset_id
   table_id   = "wb_bad_data"
   deletion_protection = false
 
