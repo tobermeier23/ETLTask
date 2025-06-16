@@ -245,7 +245,7 @@ resource "google_data_pipeline_pipeline" "primary" {
           max_workers = 5
           machine_type = "n1-standard-1"
           worker_region = "us-east5"
-          worker_zone = "us-east-c"
+          worker_zone = "us-east5-c"
         }
         update                 = false
       }
