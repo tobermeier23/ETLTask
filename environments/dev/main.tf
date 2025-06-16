@@ -335,7 +335,7 @@ resource "google_eventarc_trigger" "wb-trigger" {
   service_account = "etlpipeline@ninth-sol-462415-k7.iam.gserviceaccount.com"
   destination {
     cloud_run_service {
-      service = google_cloud_run_v2_service.default.name
+      service = google_cloud_run_v2_service.wb_run_service.name
       region  = "us-central1"
       path    = "/"
     }
