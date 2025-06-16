@@ -680,7 +680,7 @@ resource "google_storage_bucket" "wb_dataflow_files" {
 }
 
 resource "google_storage_bucket_object" "wb_json_schema" {
-  name       = "wbjsonSchema.json"
+  name       = "wbJsonSchema.json"
   source     = "${path.root}/files/wbJsonSchema.json"
   bucket     = google_storage_bucket.wb_dataflow_files.name
   depends_on = [google_storage_bucket.wb_dataflow_files]
