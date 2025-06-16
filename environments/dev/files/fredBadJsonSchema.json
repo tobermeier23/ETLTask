@@ -1,13 +1,12 @@
 {
-    "BigQuery Schema": [
+  "BigQuery Schema": [
     {
-        "name": "observation_date",
-        "type": "DATE",
-        "mode": "REQUIRED"
+      "name": "RawContent",
+      "type": "STRING"
     },
     {
-        "name": "ICSA",
-        "type": "INTEGER",
-        "mode": "REQUIRED"
-    }]
+      "name": "ErrorMsg",
+      "type": "STRING"
+    }
+  ]
 }

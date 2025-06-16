@@ -170,15 +170,12 @@ resource "google_bigquery_table" "fred_bad_table" {
   schema     = <<EOF
 [
   {
-    "name": "observation_date",
-    "type": "DATE",
-    "mode": "REQUIRED"
-  },
+      "name": "RawContent",
+      "type": "STRING"
   {
-    "name": "ICSA",
-    "type": "INTEGER",
-    "mode": "REQUIRED"
-  }  
+      "name": "ErrorMsg",
+      "type": "STRING"
+    }  
 ]
 EOF
   depends_on = [google_bigquery_dataset.fred_dataset]
