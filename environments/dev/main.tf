@@ -357,6 +357,14 @@ resource "google_bigquery_table" "wb_table" {
   schema     = <<EOF
 [
   {
+    "name": "Data Source",
+    "type": "STRING"
+  },
+  {
+    "name": "World Development Indicators",
+    "type": "STRING"
+  },
+  {
     "name": "Country Name",
     "type": "STRING"
   },
