@@ -172,6 +172,7 @@ resource "google_bigquery_table" "fred_bad_table" {
   {
       "name": "RawContent",
       "type": "STRING"
+  },
   {
       "name": "ErrorMsg",
       "type": "STRING"
