@@ -31,4 +31,4 @@ When a new release is going to take place the developer would create a branch fr
 With more time there are a couple things I would like to improve for this design
 
 - I would like to take advantage of terraforms modules to make the process for releasing new/additional cloud run jobs easier and reduce a lot of the redundancy and length of the current main.tf.
-- There is no monitoring or alerting for any of this configured. I would like to add alerts for successes and failures as well as add metrics to get incite into processing times for cloud run and dataflow.
+- There is no monitoring or alerting for any of this configured. I would like to add alerts for successes and failures as well as add metrics to get insight into processing times for cloud run and dataflow.
