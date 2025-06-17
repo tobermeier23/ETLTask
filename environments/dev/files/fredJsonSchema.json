@@ -1,0 +1,13 @@
+{
+    "BigQuery Schema": [
+    {
+        "name": "observation_date",
+        "type": "DATE",
+        "mode": "REQUIRED"
+    },
+    {
+        "name": "ICSA",
+        "type": "INTEGER",
+        "mode": "REQUIRED"
+    }]
+}
