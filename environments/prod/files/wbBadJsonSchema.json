@@ -1,0 +1,12 @@
+{
+  "BigQuery Schema": [
+    {
+      "name": "RawContent",
+      "type": "STRING"
+    },
+    {
+      "name": "ErrorMsg",
+      "type": "STRING"
+    }
+  ]
+}
