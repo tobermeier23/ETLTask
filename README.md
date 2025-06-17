@@ -26,7 +26,7 @@ The CI/CD release strategy is a standard strategy for terraform. Since everythin
 
 When a new release is going to take place the developer would create a branch from main and begin working in the dev directory. This directory is configured to deploy to the dev project/environment via the variables.tf. A cloud trigger would watch for the new branch and when commits were made would allow for a cloud build. This would run everyhthing up to a terraform plan to allow you to see your changes. If everything looks good this would be merged and deployed by another cloud build run. The eventarc triggers would kick off for existing cloud run services that neeed to run. Once the lower environment was verified another branch would be made with changes to the prod directory with the same changes. This would allow for a cloud build job that would run a terrform plan against prod and if verified and merged these changes would trigger the cloud build job to deploy to the production environment.
 
-## Imporvements
+## Improvements
 
 With more time there are a couple things I would like to improve for this design
 
