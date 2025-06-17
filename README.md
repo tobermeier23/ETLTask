@@ -6,15 +6,15 @@
 
 This solution uses the following services or tools
 
-- Google Cloud Storage: Where files are staged as well as where configurations for schemas or Cloud Run are stored.
-- Dataflow Pipeline: Processes data that has been staged in GCS and loads it into BigQuery.
-- BigQuery: Final data lake storage location for files that have been ingested.
-- Cloud Run: Ingests data and performs initial preperation to have it ready for the Dataflow Pipeline.
-- Terraform: IaC solution used to define the resources for running the pipeline as well as storing state.
-- Cloud Build: Used to deploy the terraform resource defenitions and trigger events in the Google Cloud Platform to kick off processing.
-- Github: The repository that holds the terraform configuration and Cloud Build yaml.
-- Python: Any scripting for Cloud Run is done in Python.
-- Eventarc Trigger: This watches the logs for specific Cloud Build events to kick off the Cloud Run service.
+- **Google Cloud Storage:** Where files are staged as well as where configurations for schemas or Cloud Run are stored.
+- **Dataflow Pipeline:** Processes data that has been staged in GCS and loads it into BigQuery.
+- **BigQuery:** Final data lake storage location for files that have been ingested.
+- **Cloud Run:** Ingests data and performs initial preperation to have it ready for the Dataflow Pipeline.
+- **Terraform:** IaC solution used to define the resources for running the pipeline as well as storing state.
+- **Cloud Build:** Used to deploy the terraform resource defenitions and trigger events in the Google Cloud Platform to kick off processing.
+- **Github:** The repository that holds the terraform configuration and Cloud Build yaml.
+- **Python:** Any scripting for Cloud Run is done in Python.
+- **Eventarc Trigger:** This watches the logs for specific Cloud Build events to kick off the Cloud Run service.
 
 ### Pipeline flow
 
